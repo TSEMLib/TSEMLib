@@ -1,0 +1,89 @@
+# Installation instructions and information on TSEMLib
+
+## 1. System requirements
+
+### 1.1. Supported platforms
+TSEMLib is mostly developed on Linux systems using gcc compiler. 
+
+TSEMLib supports the following system:
+
+- Ubuntu: Ubuntu-16.04 or later,  GCC version 5.0 or later
+- CentOS: CentOS-7, GCC version 5.0 or later
+
+### 1.2. Additional software requirements
+
+To compile and use TSEMLib, the following libraries and software are needed:
+
+- CMake version 3.3.0 or later
+- GNU make, version 3.78 or later
+- deal.II, version 8.1.0
+- LAPACK, version 3.10.0 or later
+- AFEPack, the adaptive finite element package, which provides the data structure to manage the mesh grid.
+- The library generates output in formats readable by OpenDX. In fact, the output can also be      stored in vtk file by using the specified functions in AFEPack.
+
+## 2. Installation
+### 2.1. Unpacking
+The whole library can be download from the Github. Generally, it is packed as a tar.gz file, which can be unpacked by following commands:
+
+```
+tar -zxvf TSEMLib-a.b.c.tar.gz
+```
+
+### 2.2. Configuring and installation 
+
+TSEMLib is packed by using Autotools under GNU Build System standard. The configure file has been generated through Autotools. The configuring and installation can be done by implementing the following steps:
+
+```
+./configure
+make -jN
+make install -jN
+```
+
+The parameter -jN is applied to use more than one processor for compiling .
+
+### 2.3. Configuration Options
+
+By default, configure will automatically apply the dependent packages in '/usr/local/'. To install the package more precisely, there are specific configuration options available as follows:
+
+- --prefix, the destination directory, where the package is installed. It is set as '/usr/local/' by default. 
+- --with-dealii, the path of deal.II library. It is set as '/usr/local/' by default. 
+- --with-afepack, the path of AFEPack library. It is set as '/usr/local/' by default. 
+
+
+
+## 3. Directory Structure
+
+TSEMLib consists of three directories, i.e., *include*, *src*, *examples*. The declarations of all template classes and functions are given in the header files in *include*. The source files containing all of the corresponding executed functions and class descriptions are included in the *src*. More importantly, for a hands-on experience with the package, several numerical experiments can be found in the *examples*. In the following section, we will introduce how to execute these examples.
+
+## 4. Usage
+
+After successfully installation, there will be a *share* directory in the prefix path. In */prefixpath/share/TSEMLib/example*s, users can find several numerical examples. For illustration, we consider execute the example *poisson_mixBC*. In the beginning, navigate to this directory. Then, users can find a *cpp* file, a *mesh* file, *Makefile.sample* as well as two executable files: *run.sh.sample*, and *test.sh*. In *Makefile.sample* and *run.sh.sample*, the path of dependent libraries should be linked automatically. If the library or header files can not be found, users can update the flags according to the specific paths. To execute the example, users can do the following steps:
+
+```
+mv Makefile.sample Makefile
+make -jN
+./test.sh
+```
+
+Then the numerical experiment can be done.
+
+## 5. License
+
+```
+TSEMLib Copyright 2023 Hongfei Zhan, hfzhan19@gmail.com
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+```
+

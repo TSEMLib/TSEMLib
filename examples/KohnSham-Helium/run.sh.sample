@@ -1,0 +1,7 @@
+#! /bin/sh
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/home/hfzhan/Code/tsem_package/lib
+export AFEPACK_PATH=/usr/local/include/AFEPack
+export AFEPACK_TEMPLATE_PATH=$AFEPACK_PATH/template/tetrahedron:$AFEPACK_PATH/template/twin_tetrahedron:$AFEPACK_PATH/template/four_tetrahedron
+
+exec ./main $*

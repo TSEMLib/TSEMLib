@@ -1,0 +1,18 @@
+mpic++ -fpermissive -O2 -fPIC -g -fopenmp -ldeal_II -I/usr/local/include -I/usr/local/include/deal.II -I/usr/include/trilinos   -c -o pointInfo.o pointInfo.cpp
+pointInfo.cpp: In instantiation of ‘valuetype TSEM<valuetype>::calc_val_point(AFEPack::RegularMesh<3>&, AFEPack::Point<3>&, dealii::Vector<T>&) [with valuetype = double]’:
+../include/TetrahedralSEM.h:330:16:   required from here
+pointInfo.cpp:130:57: error: no matching function for call to ‘TSEM<double>::calc_val_point_insideElement(Correspondence<3>&, AFEPack::RegularMesh<3>&, unsigned int&, AFEPack::Point<3>&, dealii::Vector<double>&)’
+  130 |         valuetype u_local = calc_val_point_insideElement(correspondence, mesh, ind_e, pos, u);
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from pointInfo.cpp:1:
+../include/TetrahedralSEM.h:301:15: note: candidate: ‘valuetype TSEM<valuetype>::calc_val_point_insideElement(AFEPack::RegularMesh<3>&, int, AFEPack::Point<3>&, dealii::Vector<T>&) [with valuetype = double]’
+  301 |     valuetype calc_val_point_insideElement(RegularMesh<3> &mesh, int ind_ele,
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/TetrahedralSEM.h:301:15: note:   candidate expects 4 arguments, 5 provided
+../include/TetrahedralSEM.h:303:15: note: candidate: ‘valuetype TSEM<valuetype>::calc_val_point_insideElement(AFEPack::RegularMesh<3>&, int, AFEPack::Point<3>&, std::vector<dealii::Vector<T> >&, std::vector<T>&) [with valuetype = double]’
+  303 |     valuetype calc_val_point_insideElement(RegularMesh<3> &mesh, int ind_ele,
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/TetrahedralSEM.h:303:60: note:   no known conversion for argument 1 from ‘Correspondence<3>’ to ‘AFEPack::RegularMesh<3>&’
+  303 |     valuetype calc_val_point_insideElement(RegularMesh<3> &mesh, int ind_ele,
+      |                                            ~~~~~~~~~~~~~~~~^~~~
+make: *** [<builtin>: pointInfo.o] Error 1

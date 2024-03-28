@@ -1,0 +1,25 @@
+source = $(wildcard *.cpp)
+object = $(patsubst %.cpp, %.o, $(source))
+
+#CPPFLAGS = -I$(HEADER_PATH) -I/usr/local/include/deal.II
+#LDFLAGS = -L$(LIBRARY_PATH)
+
+CPPFLAGS = -I/usr/local/include -I/usr/local/include/deal.II -I../../include -I.
+LDFLAGS = -L/usr/local/lib -L/home/hfzhan/Code/tsem_package/lib
+
+LIBS = -lAFEPack -ldeal_II -lTSEM 
+
+CXXFLAGS = -O2 -g -Wno-deprecated-declarations
+
+CXX = mpicxx
+
+
+%.o : %.cpp
+	$(CXX) -c -o $@ $< -I. $(CXXFLAGS) $(CPPFLAGS)
+
+main : $(object)
+	$(CXX) -o $@ $(object) $(LDFLAGS) $(LIBS)
+
+clean :
+	-rm -rf $(object)
+	-rm -rf main

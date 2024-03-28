@@ -1,0 +1,5 @@
+#include "../include/TetrahedralSEM.h"
+
+// Explicit instantiation for the types you want to use
+template class TSEM<double>;
+
